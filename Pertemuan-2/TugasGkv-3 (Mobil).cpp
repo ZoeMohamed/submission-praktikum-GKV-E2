@@ -159,9 +159,7 @@ void timer(int value) {
     if (bergerak) {
         if (arahX == -1 && mobilPosisiX > -0.9) mobilPosisiX -= kecepatan;
         else if (arahX == 1 && mobilPosisiX < 0.9) mobilPosisiX += kecepatan;
-        
-        if (arahY == 1 && mobilPosisiY < 0.0) mobilPosisiY += kecepatan;
-        else if (arahY == -1 && mobilPosisiY > -0.7) mobilPosisiY -= kecepatan;
+    
     }
     
     glutPostRedisplay();
@@ -176,8 +174,6 @@ void specialKeys(int key, int x, int y) {
     bergerak = true;
     
     switch (key) {
-        case GLUT_KEY_UP: arahY = 1; break;
-        case GLUT_KEY_DOWN: arahY = -1; break;
         case GLUT_KEY_LEFT: arahX = -1; break;
         case GLUT_KEY_RIGHT: arahX = 1; break;
     }
@@ -187,11 +183,10 @@ void specialKeysUp(int key, int x, int y) {
     switch (key) {
         case GLUT_KEY_LEFT:
         case GLUT_KEY_RIGHT: arahX = 0; break;
-        case GLUT_KEY_UP:
-        case GLUT_KEY_DOWN: arahY = 0; break;
+        
     }
     
-    if (arahX == 0 && arahY == 0) bergerak = false;
+    if (arahX == 0) bergerak = false;
 }
 
 int main(int argc, char** argv) {
